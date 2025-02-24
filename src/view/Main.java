@@ -1,18 +1,24 @@
+
 package view;
 
-import model.Categoria;
 import model.Item;
 import model.Produto;
 import model.Venda;
 
 public class Main {
     public static void main(String[] args) {
+
         Venda venda = new Venda();
-        venda.adicionarItem(
-                new Item(1,
-                    new Produto(1, "Arroz",
-                        6.20, Categoria.ALIMENTICIO),
-                3));
-        System.out.println(venda.getTotal());
+        venda.adicionarProdutos();
+
+        System.out.println("\nResumo da Venda:");
+        for (Item item : venda.getItens()) {
+            System.out.println("Produto: " + item.getProduto().getDescricao() +
+                    ", Categoria: " + item.getProduto().getCategoria() +
+                    ", Quantidade: " + item.getQuantidade() +
+                    ", Subtotal: " + item.getSubtotal());
+        }
+
+        System.out.println("Total da venda: " + venda.getTotal());
     }
 }
